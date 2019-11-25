@@ -7,8 +7,11 @@
  **/
 package org.sdumsc.course201907.ui.components;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 
@@ -75,12 +78,12 @@ public class Window extends JFrame implements Controllable, WindowListener{
 		this.add(this.getButton(placeX + 0*(width + spaceX), placeY, width, height, "7"));
 		this.add(this.getButton(placeX + 1*(width + spaceX), placeY, width, height, "8"));
 		this.add(this.getButton(placeX + 2*(width + spaceX), placeY, width, height, "9"));
-		this.add(this.getButton(placeX + 3*(width + spaceX), placeY, width, height, "¡Á"));
+		this.add(this.getButton(placeX + 3*(width + spaceX), placeY, width, height, "Ã—"));
 		placeY += height + spaceY;
 		this.add(this.getButton(placeX + 0*(width + spaceX), placeY, width, height, "4"));
 		this.add(this.getButton(placeX + 1*(width + spaceX), placeY, width, height, "5"));
 		this.add(this.getButton(placeX + 2*(width + spaceX), placeY, width, height, "6"));
-		this.add(this.getButton(placeX + 3*(width + spaceX), placeY, width, height, "¡Â"));
+		this.add(this.getButton(placeX + 3*(width + spaceX), placeY, width, height, "Ã·"));
 		placeY += height + spaceY;
 		this.add(this.getButton(placeX + 0*(width + spaceX), placeY, width, height, "1"));
 		this.add(this.getButton(placeX + 1*(width + spaceX), placeY, width, height, "2"));
@@ -111,10 +114,11 @@ public class Window extends JFrame implements Controllable, WindowListener{
 		
 		placeY += height + spaceY;
 		width = this.getSize().width;
-		Label label = new Label(0, placeY, width, 14, "This is your label!");
-		label.setFont(GraphicsController.getDefaultFont(10));
+		Label label = new Label(0, placeY, width, 14 + 10, "çŽ°åœ¨æ—¶é—´ï¼š");
+		label.setFont(GraphicsController.getDefaultFont(10 + 5));
 		label.setShade(1);
 		CalculateController.setLabel(label);
+		label.addMouseListener(label);
 		this.add(label);
 	}
 	
