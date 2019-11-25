@@ -1,8 +1,8 @@
 /**
  * @class: Label.java 
  * @extends: javax.swing.JLabel
- * @author: «ÎÃÓ–¥ƒ„µƒ–’√˚
- * @submit: 2019/11/
+ * @author: Kamigen
+ * @submit: 2019/11/22
  * @description: Superclass Label of labels
  **/
 package org.sdumsc.course201907.ui.components;
@@ -10,17 +10,26 @@ package org.sdumsc.course201907.ui.components;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import org.sdumsc.course201907.controller.GraphicsController;
+import org.sdumsc.course201907.ui.interfaces.Controllable;;
 
 @SuppressWarnings("serial")
-public class Label extends JLabel{
+public class Label extends JLabel implements Controllable, MouseListener{
 
 	private int radius = 0;
 	private int shade = 0;
+	SimpleDateFormat showTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private String time = showTime.format(new Date());
+	private String text = "";
+	private boolean isClicked = false;
 	
 	public Label(){
 		super();
@@ -33,11 +42,25 @@ public class Label extends JLabel{
 	}
 
 	protected void initialize(int x, int y, int width, int height, String text) {
+		this.text = text;
 		this.setOpaque(false);
         this.setBackground(GraphicsController.DEFAULT_COLOR);
         
         this.setBounds(x, y, width, height);
-        this.setText(text);
+        this.setText(text + time);
+	}
+	
+	public void update() {
+		if(isClicked) 
+			showTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss aa");//12Â∞èÊó∂Âà∂
+		else
+			showTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//24Â∞èÊó∂Âà∂
+		this.time = showTime.format(new Date());
+		this.setText(this.text + time);
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		isClicked = !isClicked;
 	}
 	
 	public void setRadius(int radius) {
@@ -83,6 +106,36 @@ public class Label extends JLabel{
 	protected void paintBackground(Graphics2D graphics) {
 		graphics.setColor(this.getBackground());
 		graphics.fillRoundRect(this.shade, this.shade, this.getWidth() - this.shade * 2, this.getHeight() - this.shade * 2, this.radius * 2, this.radius * 2);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
